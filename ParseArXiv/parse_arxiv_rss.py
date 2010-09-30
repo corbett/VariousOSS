@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os,sys,re
+import sys,re
 from BeautifulSoup import *
 from urllib import *
 import datetime
@@ -30,7 +30,10 @@ class Paper(object):
 
 def main():
     BASE_URL='http://export.arxiv.org/rss/'
-    sections=Sections([u'astro-ph',u'gr-qc'])
+    if len(sys.argv) < 2:
+        print """Usage: ./parse_arxiv_rss.py <section> <section> ...
+        example: ./parse_arxiv_rss.py astro-ph gr-qc """
+    sections=Sections(sys.argv[1:])
     for sect in sections.section_names:
         arxiv=Arxiv(sect,datetime.datetime.now())
         papers=BeautifulStoneSoup(urlopen(u'%s/%s' % (BASE_URL,sect)).read())
@@ -40,8 +43,8 @@ def main():
                 pap.description.contents[0])
             arxiv.add_paper(pap)
         sections.add_section(arxiv)
-    #TODO: here write code to submit to phygg
     for sect,arx in sections.sections.items():
+        # do what you'd like here with the items we've obtained
         print sect,arx.papers.keys()
 
 if __name__ == '__main__':
