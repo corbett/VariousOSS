@@ -3,7 +3,7 @@ Simple script to parse arxiv.org rss feeds. Depends on BeautifulSoup. Install wi
 % easy_install beautifulsoup
 
 then run with
-% python parse_rss.py
+% python parse_arxiv_rss.py
 
 Author: Christine Corbett Moran
 License: BSD
