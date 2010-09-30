@@ -1,0 +1,13 @@
+Simple script to parse arxiv.org rss feeds. Depends on BeautifulSoup. Install with
+
+% easy_install beautifulsoup
+
+then run with
+% python parse_rss.py
+
+Author: Christine Corbett Moran
+License: BSD
+
+arxiv rss feeds currently parsed at:
+http://export.arxiv.org/rss/astro-ph
+http://export.arxiv.org/rss/gr-qc
