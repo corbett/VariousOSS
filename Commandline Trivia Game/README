@@ -1,0 +1,8 @@
+Command line trivia game taking questions from a questions.txt file containing alternating questions and answers separated by new lines. There's a sample given in the repository.
+
+Usage: ./trivia.py questions.txt
+
+Press any key to get a question. Then press any key when you are ready for the answer. 
+
+Author:   Christine Corbett Moran, christine.corbett@gmail.com
+License: http://creativecommons.org/licenses/GPL/2.0/
