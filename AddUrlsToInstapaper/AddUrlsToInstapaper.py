@@ -20,7 +20,7 @@ import urllib2
 help_message = '''
 ./AddUrlsToInstapaper.py -w -u username -p password page_url
 
-Adds all urls referenced on page_url to instapaper. If -w option is given, wikipedia urls are retained, if not they are ignored,
+Adds all urls referenced on page_url to instapaper. If -w option is given, wikipedia urls are retained, if not they are ignored. The username and password option refer to instapaper username and optional password.
 '''
 
 
