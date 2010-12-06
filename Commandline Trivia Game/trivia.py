@@ -37,8 +37,9 @@ if __name__ == '__main__':
         christine.corbett@gmail.com
         -----------
         """
-    while True:
-        question=random.choice(trivia_questions)
+    random.shuffle(trivia_questions)
+    while trivia_questions:
+        question=trivia_questions.pop()
         print "-----"
         raw_input("")
         print "Q:",question.q
