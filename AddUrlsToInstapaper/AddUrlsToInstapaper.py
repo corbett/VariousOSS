@@ -32,7 +32,7 @@ class Usage(Exception):
 def add_links_to_instapaper(url,username,password=None,
     wikilinks=False,verbose=False):    
     def valid_link(link):
-    	return 'http' in link and (wikilinks or not 'wikipedia.org' in link)
+    	return ('http' in link) and (wikilinks or not 'wikipedia.org' in link)
     INSTAPAPER_ADD='https://www.instapaper.com/api/add'
     instapaper_params={'username':username}
     if password: 
@@ -44,15 +44,13 @@ def add_links_to_instapaper(url,username,password=None,
     all_links=Set()
     for link in wikipedia_page.findAll('a'):
         try:
-			link=link['href']
-			if not link in all_links and valid_link(link):
+            link=link['href']
+            if not link in all_links and valid_link(link):
 			    instapaper_params['url']=link
-			    result=urllib.urlopen(INSTAPAPER_ADD+'?%s' % \
-			        urllib.urlencode(instapaper_params))
-        		if verbose:
-        		    print 'status code %s for adding %s to instapaper' % \
-        		        (result.read(),link)		
-        		all_links.add(link)        		
+			    result=urllib.urlopen(INSTAPAPER_ADD+'?%s' % urllib.urlencode(instapaper_params))
+			    if verbose:
+			        print 'status code %s for adding %s to instapaper' % (result.read(),link)		
+            all_links.add(link)        		
         except:
             continue
             
