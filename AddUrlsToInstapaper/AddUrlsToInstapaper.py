@@ -3,13 +3,11 @@
 """
 AddUrlsToInstapaper.py
 
-Created by Christine Corbett Moran on 2010-12-06.
-Simple script to parse arxiv.org rss feeds. Depends on BeautifulSoup. Install with
+Simple script to add all urls referenced in root url to instapaper. Depends on BeautifulSoup. Install with
 % easy_install beautifulsoup
 
 Author: Christine Corbett Moran
 License: BSD
-
 """
 
 import sys
@@ -52,7 +50,8 @@ def add_links_to_instapaper(url,username,password=None,
 			    result=urllib.urlopen(INSTAPAPER_ADD+'?%s' % \
 			        urllib.urlencode(instapaper_params))
         		if verbose:
-        		    print 'status code %s for adding %s to instapaper' % (result.read(),link)		
+        		    print 'status code %s for adding %s to instapaper' % \
+        		        (result.read(),link)		
         		all_links.add(link)        		
         except:
             continue
