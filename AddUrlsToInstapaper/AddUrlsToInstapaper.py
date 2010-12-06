@@ -52,9 +52,8 @@ def add_links_to_instapaper(url,username,password=None,
 			    result=urllib.urlopen(INSTAPAPER_ADD+'?%s' % \
 			        urllib.urlencode(instapaper_params))
         		if verbose:
-        		    print 'status code %s for adding %s to instapaper' % \
-        		        (result.read(),link)		
-                all_links.add(link)        		
+        		    print 'status code %s for adding %s to instapaper' % (result.read(),link)		
+        		all_links.add(link)        		
         except:
             continue
             
@@ -64,7 +63,7 @@ def main(argv=None):
     try:
         try:
             opts, args = getopt.getopt(argv[1:], "hvwu:p:",
-                ["help","wikilinks","username","password"])
+                ["help","verbose","wikilinks","username","password"])
         except getopt.error, msg:
             raise Usage(msg)
         # option processing
@@ -78,13 +77,13 @@ def main(argv=None):
                 wikilinks=True
             if option in ("-u","username"):
                 username=value
-            if option in ("p","password"):
+            if option in ("-p","password"):
                 password=value
         if not len(args)==1 or not username:
             raise Usage(help_message)
         page_url=args[0]
         add_links_to_instapaper(page_url,username,
-            password=password,wikilinks=wikilinks)
+            password=password,wikilinks=wikilinks,verbose=verbose)
     except Usage, err:
         print >> sys.stderr, sys.argv[0].split("/")[-1] + ": " + str(err.msg)
         print >> sys.stderr, "\t for help use --help"
