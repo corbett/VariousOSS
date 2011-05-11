@@ -1,17 +1,32 @@
 import wave
 import random
 import math
-#setup
-duration=10 #seconds
-samplerate = 41000 #Hz
-noisefile=wave.open('noise.wav','wb')
-#(nchannels, sampwidth, framerate, nframes, comptype, compname),
-noisefile.setparams((1, 2, samplerate*4, duration*samplerate, 'NONE', 'noncompressed'))
+import sys
+import getopt
 
-#generating signal
-signal=map(lambda x: random.random(),range(duration*samplerate))
-output=''.join(map(lambda x: wave.struct.pack('d',x),signal))
+def write_noise(outfile,duration,samplerate):
+	#setup
+	noisefile=wave.open(outfile,'wb')
+	noisefile.setparams((1, 2, samplerate*4, duration*samplerate, 'NONE', 'noncompressed'))
+	#generating signal
+	signal=map(lambda x: random.random(),range(duration*samplerate))
+	output=''.join(map(lambda x: wave.struct.pack('d',x),signal))
+	#writing output
+	noisefile.writeframes(output)
 
-#writing file
-noisefile.writeframes(output)
-
+if __name__ == '__main__':
+	#defaults
+	duration=10 #seconds
+	samplerate = 41000 #Hz
+	outfile='noise.wav'
+	
+	#calling main function
+	write_noise(outfile,duration,samplerate)
+	
+	#demoing
+	for power in range(5):
+		samplerate=4*10**power
+		outfile='noise'+str(samplerate)+'.wav'
+		#calling main function
+		write_noise(outfile,duration,samplerate)
+	
