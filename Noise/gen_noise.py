@@ -20,13 +20,9 @@ if __name__ == '__main__':
 	samplerate = 41000 #Hz
 	outfile='noise.wav'
 	
-	#calling main function
-	write_noise(outfile,duration,samplerate)
-	
 	#demoing
 	for power in range(5):
 		samplerate=4*10**power
 		outfile='noise'+str(samplerate)+'.wav'
-		#calling main function
 		write_noise(outfile,duration,samplerate)
 	
