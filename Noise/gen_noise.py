@@ -5,13 +5,12 @@ import sys
 import getopt
 
 def write_noise(outfile,duration,samplerate):
-	#setup
-	noisefile=wave.open(outfile,'wb')
-	noisefile.setparams((1, 1, samplerate*8, duration*samplerate, 'NONE', 'noncompressed'))
 	#generating signal
 	signal=map(lambda x: random.random(),range(duration*samplerate))
 	output=''.join(map(lambda x: wave.struct.pack('d',x),signal))
 	#writing output
+	noisefile=wave.open(outfile,'wb')
+	noisefile.setparams((1, 1, samplerate*8, duration*samplerate, 'NONE', 'noncompressed'))
 	noisefile.writeframes(output)
 
 if __name__ == '__main__':
