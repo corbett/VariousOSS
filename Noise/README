@@ -1,0 +1,3 @@
+Contains function to generates white noise .wav file with sample usage. Samplerate, length in s and name of output file are parameters.
+
+Demo Usage: python gen_noise.py
